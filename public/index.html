@@ -1,17 +1,28 @@
 <!DOCTYPE html>
 <html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+<!-- 쟁글은 모바일 first! -->
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- width=device-width : 문서 너비를 현재 기기 너비에 맞춤 -->
+  <!-- initial-scale=1.0 : 문서를 불러와서 화면에 표시할 때 기본배율을 1로 지정 -->
+  <!-- maximum-scale=5.0 : 확대/축소할 수 있는 최댓값. 기본값은 5 -->
+  <!-- minimum-scale=0.25 : 확대/축소할 수 있는 최tht값. 기본값은 0.25 -->
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=5.0"">
+    <link rel=" icon" href="<%= BASE_URL %>favicon.ico">
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+        Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
 </html>
