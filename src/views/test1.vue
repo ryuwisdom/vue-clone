@@ -24,24 +24,23 @@
           <div class="cryptoAssets item">
             <CryptoAssets />
           </div>
-          <div class="marketWatch item">
+          <div class="CryptoAssets item">
             <MarketWatch />
           </div>
+
           <div class="prResearch item">
             <PRResearch />
           </div>
         </div>
-        <!-- <router-link></router-link> -->
-        <!-- <p>components place</p> -->
+
       </div>
     </div>
-    <!-- <router-link>+_+</router-link> -->
+
   </div>
 </template>
 
 <script>
 console.log('+_+');
-// import Header from '@/components/Header.vue';
 import Disclosures from '@/components/MainContents/Disclosures.vue';
 import CryptoAssets from '@/components/MainContents/CryptoAssets.vue';
 import MarketWatch from '@/components/MainContents/MarketWatch.vue';
@@ -59,22 +58,15 @@ export default {
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,600;0,700;1,400&display=swap');
 @import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css');
+@import url("https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css");
+@import url("https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css");
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 
   .landingPage_container {
-    /* width: 1200px; */
-    /* width: 100%; */
-    /* height: 100vh; */
-    /* padding-top: 10px; */
-    /* height: 360px; */
-    /* display: flex;
-    justify-content: center; */
-    /* align-items: center; */
-    /* margin-bottom: 100px; */
-    /* z-index: -1; */
     margin-top: 64px;
     flex-direction: column;
     position: relative;
@@ -85,36 +77,23 @@ export default {
       display: flex;
       justify-content: center;
       background-color: #090a0e;
-      /* border: 1px solid yellow; */
+      //border: 1px solid yellow;
       position: relative;
-
-      /* padding-top: 84px; */
       .banner_inner_container {
-        /* width: 100%; */
+
         width: 1200px;
         height: 360px;
-
-        /* margin: 0 50px; */
-        /* margin-top: 50px; */
-        /* border: 1px solid whitesmoke; */
-        /* padding-left: 50px; */
-        /* padding: 84px 12px 0 0; */
-
-        /* padding-right: 12px; */
         background-image: url('../assets/images/visual@2x.png');
         background-repeat: no-repeat;
         background-size: 604px 318px;
         background-position: bottom right;
         background-position: 100% 100%;
 
-        /* background-color: gray; */
         .banner_contents {
-          /* width: 457px; */
-          /* position: absolute;
-          top: 100px; */
-          margin-top: 104px;
-          /* background-color: wheat; */
+          margin: 98px 139px 24px 0;
+
           .banner_left {
+
             p {
               color: white;
               font-size: 36px;
@@ -139,21 +118,23 @@ export default {
     }
     .ticker_container {
       height: 42px;
+      line-height: 25px;
       background-color: #ffffff;
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
       p {
         padding: 10px;
-        text-align: center;
+        text-align: left;
+        font-weight: bold;
       }
     }
     .mainContents_container {
       /* max-width: 1280px; */
-      /* background-color: skyblue; */
+
       background-color: #ebeef4;
       display: flex;
       justify-content: center;
       align-items: center;
-      /* flex-direction: column; */
+
 
       .mainContents_inner_container {
         width: 1200px;
@@ -163,7 +144,6 @@ export default {
         padding: 30px 0;
         margin-top: 10px;
         flex-wrap: nowrap;
-
         gap: 1em;
 
         .mainComponent_box {
@@ -179,8 +159,7 @@ export default {
           flex-wrap: wrap;
           .item {
             min-height: 492px;
-
-            flex-basis: 480px;
+            flex-basis: 460px;
             flex-shrink: 1;
             flex-grow: 1;
           }

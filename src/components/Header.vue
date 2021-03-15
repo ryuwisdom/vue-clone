@@ -17,7 +17,7 @@ export default {};
   padding: 0 1px 0 0;
   display: flex;
 
-  background-color: #090a0e;
+  background-color: #020105;
   position: fixed;
   left: 0;
   top: 0;

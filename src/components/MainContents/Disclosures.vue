@@ -12,11 +12,12 @@
       </div>
     </div>
     <div class="disclosures_list_contents">
+
       <div class="list_component">
         <div class="list_component_name">
           <img
-            src="https://s3.ap-northeast-2.amazonaws.com/upload.xangle.io/images/project/5fb31d7e8f91a947187042f5/64.png"
-            alt=""
+              src="https://s3.ap-northeast-2.amazonaws.com/upload.xangle.io/images/project/5fb31d7e8f91a947187042f5/64.png"
+              alt=""
           />
           <span>BTC</span>
         </div>
@@ -30,7 +31,137 @@
 
         <div class="list_component_date">03-10</div>
       </div>
+      <div class="list_component">
+        <div class="list_component_name">
+          <img
+              src="https://s3.ap-northeast-2.amazonaws.com/upload.xangle.io/images/project/5fb31d7e8f91a947187042f5/64.png"
+              alt=""
+          />
+          <span>BTC</span>
+        </div>
+        <div class="list_component_title">
+          New listing: Liquid (10 March 2021)
+        </div>
+        <div class="list_component_price">
+          <span class="price">$0.036588</span>
+          <span class="variance">-6.7%(24h)</span>
+        </div>
+
+        <div class="list_component_date">03-10</div>
+      </div>
+      <div class="list_component">
+        <div class="list_component_name">
+          <img
+              src="https://s3.ap-northeast-2.amazonaws.com/upload.xangle.io/images/project/5fb31d7e8f91a947187042f5/64.png"
+              alt=""
+          />
+          <span>BTC</span>
+        </div>
+        <div class="list_component_title">
+          New listing: Liquid (10 March 2021)
+        </div>
+        <div class="list_component_price">
+          <span class="price">$0.036588</span>
+          <span class="variance">-6.7%(24h)</span>
+        </div>
+
+        <div class="list_component_date">03-10</div>
+      </div>
+      <div class="list_component">
+        <div class="list_component_name">
+          <img
+              src="https://s3.ap-northeast-2.amazonaws.com/upload.xangle.io/images/project/5fb31d7e8f91a947187042f5/64.png"
+              alt=""
+          />
+          <span>BTC</span>
+        </div>
+        <div class="list_component_title">
+          New listing: Liquid (10 March 2021)
+        </div>
+        <div class="list_component_price">
+          <span class="price">$0.036588</span>
+          <span class="variance">-6.7%(24h)</span>
+        </div>
+
+        <div class="list_component_date">03-10</div>
+      </div>
+      <div class="list_component">
+        <div class="list_component_name">
+          <img
+              src="https://s3.ap-northeast-2.amazonaws.com/upload.xangle.io/images/project/5fb31d7e8f91a947187042f5/64.png"
+              alt=""
+          />
+          <span>BTC</span>
+        </div>
+        <div class="list_component_title">
+          New listing: Liquid (10 March 2021)
+        </div>
+        <div class="list_component_price">
+          <span class="price">$0.036588</span>
+          <span class="variance">-6.7%(24h)</span>
+        </div>
+
+        <div class="list_component_date">03-10</div>
+      </div>
+      <div class="list_component">
+        <div class="list_component_name">
+          <img
+              src="https://s3.ap-northeast-2.amazonaws.com/upload.xangle.io/images/project/5fb31d7e8f91a947187042f5/64.png"
+              alt=""
+          />
+          <span>BTC</span>
+        </div>
+        <div class="list_component_title">
+          New listing: Liquid (10 March 2021)
+        </div>
+        <div class="list_component_price">
+          <span class="price">$0.036588</span>
+          <span class="variance">-6.7%(24h)</span>
+        </div>
+
+        <div class="list_component_date">03-10</div>
+      </div>
+      <div class="list_component">
+        <div class="list_component_name">
+          <img
+              src="https://s3.ap-northeast-2.amazonaws.com/upload.xangle.io/images/project/5fb31d7e8f91a947187042f5/64.png"
+              alt=""
+          />
+          <span>BTC</span>
+        </div>
+        <div class="list_component_title">
+          New listing: Liquid (10 March 2021)
+        </div>
+        <div class="list_component_price">
+          <span class="price">$0.036588</span>
+          <span class="variance">-6.7%(24h)</span>
+        </div>
+
+        <div class="list_component_date">03-10</div>
+      </div>
+      <div class="list_component">
+        <div class="list_component_name">
+          <img
+              src="https://s3.ap-northeast-2.amazonaws.com/upload.xangle.io/images/project/5fb31d7e8f91a947187042f5/64.png"
+              alt=""
+          />
+          <span>BTC</span>
+        </div>
+        <div class="list_component_title">
+          New listing: Liquid (10 March 2021)
+        </div>
+        <div class="list_component_price">
+          <span class="price">$0.036588</span>
+          <span class="variance">-6.7%(24h)</span>
+        </div>
+
+        <div class="list_component_date">03-10</div>
+      </div>
+
     </div>
+  <div class="feed_button_side">
+<button>Feed</button>
+  </div>
   </div>
 </template>
 
@@ -40,22 +171,18 @@ export default {};
 
 <style lang="scss">
 .disclosures_container {
-  /* width: 0px; */
   min-width: 700px;
   flex-basis: 300px;
   flex-grow: 1;
   min-height: 492px;
-  /* background-color: darksalmon; */
   margin-top: 20px;
 
   .title {
     height: 40px;
-    /* padding: 12px 0px 12px 0px; */
-    /* background-color: springgreen; */
     display: flex;
-    /* line-height: 40px; */
     justify-content: space-between;
     margin-bottom: 5px;
+
 
     p {
       font-size: 18px;
@@ -68,10 +195,10 @@ export default {};
       width: 68px;
       height: 32px;
       line-height: 32px;
-      /* background-color: tan; */
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       button {
         height: 32px;
         width: 32px;
@@ -81,11 +208,13 @@ export default {};
         cursor: pointer;
         .btn_font {
           font-size: 14px;
-          color: #32569a;
+          //color: #32569a;
+          color: black;
         }
       }
     }
   }
+
   .disclosures_list_contents {
     background-color: white;
     .list_component {
@@ -129,6 +258,31 @@ export default {};
         color: gray;
       }
     }
+
   }
-}
+
+  .feed_button_side {
+    //width: 700px;
+    height: 72px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      width: 240px;
+      height: 48px;
+      padding: 12px 0;
+      border-radius: 2px;
+      border-style: none;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: 'Spoqa Han Sans Neo';
+      background-image: linear-gradient(259deg, #6971fd, #4130ff);
+      cursor: pointer;
+    }
+    }
+  }
+
 </style>
