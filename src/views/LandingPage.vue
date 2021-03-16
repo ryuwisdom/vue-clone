@@ -18,7 +18,7 @@
     <div class="mainContents_container">
       <div class="top_items">
         <div class="disclosueres item">
-          <h1>Disclosures</h1>
+          Disclosures
         </div>
         <div class="crypto_assets item">CryptoAssets</div>
       </div>
@@ -78,7 +78,7 @@ export default {
             font-family: 'poppins', 'Roboto', sans-serif;
             margin-bottom: 24px;
           }
-          .langding_banner_button {
+          .landing_banner_button {
             width: 141px;
             height: 48px;
             background-color: #ffffff;
@@ -110,15 +110,12 @@ export default {
     align-items: center;
     flex-direction: column;
     padding: 20px;
-    background-color: rosybrown;
+    background-color: #ebeef4;
 
     .top_items {
-      /* min-width: 1200px; */
-      /* max-width: 1200px; */
       display: flex;
       justify-content: center;
       /* display: grid; */
-      /* grid-template-columns: 700fr 488fr; */
       /* grid-template-columns: 700px 488px; */
 
       gap: 20px;
@@ -127,15 +124,13 @@ export default {
 
       .disclosueres {
         /* max-width: 1200px; */
-        /* flex-basis: 700px; */
         /* width: 700px; */
-        /* max-width: 700px; */
         height: 500px;
-        background-color: green;
+        background-color: yellowgreen;
+
       }
 
       .crypto_assets {
-        /* flex-basis: 488px; */
         /* width: 488px; */
         /* max-width: 488px; */
         height: 500px;
@@ -163,9 +158,11 @@ export default {
       }
     }
   }
+
+
 }
 
-// 961px보다 크고 1200px보다 작을때
+// 961px보다 클 때
 @media all and (min-width: 961px) {
   .mainContents_container {
     max-width: 1200px;
@@ -180,7 +177,7 @@ export default {
       align-items: center;
       width: 100%;
 
-      .disclosueres,
+      .disclosures,
       .market_watch {
         width: 60%;
         color: red;
@@ -194,7 +191,7 @@ export default {
   }
 }
 // 601px보다 크고 960px보다 작을때
-// 600px ~ 960px 일 때
+// 601px ~ 960px 일 때
 @media all and (min-width: 601px) and (max-width: 960px) {
   .mainContents_container {
     max-width: 960px;

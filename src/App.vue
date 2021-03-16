@@ -27,6 +27,7 @@ export default {
   padding: 0;
   margin: 0;
   position: relative;
+  background-color: #ebeef4;
   /* margin-bottom: 100px; */
   .contents {
     /* margin-bottom: 100px; */

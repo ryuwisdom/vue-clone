@@ -41,10 +41,10 @@
 
 <script>
 console.log('+_+');
-import Disclosures from '@/components/MainContents/Disclosures.vue';
-import CryptoAssets from '@/components/MainContents/CryptoAssets.vue';
-import MarketWatch from '@/components/MainContents/MarketWatch.vue';
-import PRResearch from '@/components/MainContents/PRResearch.vue';
+import Disclosures from '@/components/main-contents/Disclosures.vue';
+import CryptoAssets from '@/components/main-contents/CryptoAssets.vue';
+import MarketWatch from '@/components/main-contents/MarketWatch.vue';
+import PRResearch from '@/components/main-contents/PRResearch.vue';
 export default {
   components: {
     Disclosures,
@@ -68,8 +68,7 @@ export default {
 
   .landingPage_container {
     margin-top: 64px;
-    flex-direction: column;
-    position: relative;
+    //flex-direction: column;
     .banner_container {
       width: 100%;
       height: 360px;
@@ -77,7 +76,6 @@ export default {
       display: flex;
       justify-content: center;
       background-color: #090a0e;
-      //border: 1px solid yellow;
       position: relative;
       .banner_inner_container {
 
@@ -87,13 +85,12 @@ export default {
         background-repeat: no-repeat;
         background-size: 604px 318px;
         background-position: bottom right;
-        background-position: 100% 100%;
+
 
         .banner_contents {
           margin: 98px 139px 24px 0;
 
           .banner_left {
-
             p {
               color: white;
               font-size: 36px;
@@ -101,7 +98,7 @@ export default {
               font-family: 'poppins', 'Roboto', sans-serif;
               margin-bottom: 24px;
             }
-            .langding_banner_button {
+            .landing_banner_button {
               width: 141px;
               height: 48px;
               background-color: #ffffff;
@@ -128,7 +125,6 @@ export default {
       }
     }
     .mainContents_container {
-      /* max-width: 1280px; */
 
       background-color: #ebeef4;
       display: flex;
@@ -139,7 +135,6 @@ export default {
       .mainContents_inner_container {
         width: 1200px;
         text-align: center;
-        background-color: rgb(168, 240, 240);
         background-color: #ebeef4;
         padding: 30px 0;
         margin-top: 10px;
@@ -148,7 +143,6 @@ export default {
 
         .mainComponent_box {
           display: flex;
-          flex-wrap: nowrap;
           gap: 1em;
           justify-content: space-around;
           flex-basis: 1200px;
