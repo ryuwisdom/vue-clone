@@ -65,13 +65,13 @@ export default {};
 <style lang="scss">
 .prResearch_container {
   /* width: 500px; */
-  min-width: 488px;
-  height: 492px;
+  //min-width: 488px;
+  //height: 492px;
   //background-color: yellow;
-  margin-top: 20px;
-  min-width: 350px;
-  flex-basis: 300px;
-  flex-grow: 1;
+  //margin-top: 20px;
+  //min-width: 350px;
+  //flex-basis: 300px;
+  //flex-grow: 1;
 
   .title {
     height: 40px;
@@ -95,12 +95,13 @@ export default {};
     .list_card {
       height: 95px;
       padding-left: 20px;
-      //flex-basis: 323px;
       background-color: white;
       border-bottom:  1px solid #dfdfdf;
       display: flex;
       justify-content: flex-start;
         .card_left_side {
+          display: flex;
+          flex-direction: column;
           .subject {
             width: 265px;
             height: 40px;

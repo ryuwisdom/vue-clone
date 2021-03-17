@@ -3,22 +3,22 @@
     <div class="title">
       <p>Disclosures</p>
       <div class="btn_side">
-        <button>
-          <font-awesome-icon icon="chevron-left" class="btn_font" />
+        <button @click="goToPrevPage">
+          <font-awesome-icon icon="chevron-left" class="btn_font"/>
         </button>
-        <button>
-          <font-awesome-icon icon="chevron-right" class="btn_font" />
+        <button @click="goToNextPage">
+          <font-awesome-icon icon="chevron-right" class="btn_font"/>
         </button>
       </div>
     </div>
     <div class="disclosures_list_contents">
       <div
-        class="list_component"
-        v-for="(item, id) in disclosuresList"
-        :key="id"
+          class="list_component"
+          v-for="(item, id) in disclosuresList"
+          :key="id"
       >
         <div class="list_component_name col">
-          <img :src="item.logos[64]" alt="logo" />
+          <img :src="item.logos[64]" alt="logo"/>
           <span>{{ item.symbol }}</span>
         </div>
         <div class="list_component_title col">
@@ -28,12 +28,12 @@
           <span class="price">
             {{ `${checkCurrentPrice(item.current_price)}` }}
           </span>
-          <span class="variance"
-            >{{ `${checkPercentChange(item.percent_change)}` }}
+          <span class="variance" :style="checkPositiveNum (item.percent_change)">
+            {{ `${checkPercentChange(item.percent_change)}` }}
           </span>
         </div>
 
-        <div class="list_component_date col">03-10</div>
+        <div class="list_component_date col">{{ `${checkTimeStamp(item.timestamp)}` }}</div>
       </div>
     </div>
     <div class="feed_button_side">
@@ -51,11 +51,19 @@ export default {
   data() {
     return {
       disclosuresList: [],
+      page: 0,
+      items_per_page: 8,
     };
   },
+
+  // watch: {
+  //   page () {
+  //     this.fetchLandingDisclosure()
+  //   }
+  // },
+
   methods: {
-    // 0. current_price가 있으면 소수 3째자리
-    // null이면 N/A 리턴
+
     checkCurrentPrice(item) {
       if (!item) return 'N/A';
 
@@ -66,56 +74,71 @@ export default {
       }
     },
 
-    // 1. 아이템의 값이 존재하면 (24h)붙인 후 / 소수점 제외, 숫자이고 -일때 red, +일때 green,
-    // null이면 N/A 리턴
     checkPercentChange(item) {
-      // 조건 중 null이 있을때 가장먼저 체크(값이 null일때 아예 접근하지 못하고 에러발생 )
       if (!item) return 'N/A';
-
-
-   // 2. timestamp에서 날 뽑아내기짜
-
-    //
-
-
-
 
       let result = `${Math.floor(item).toFixed(1)}% 24(h)`;
       if (item > 0) result = '+' + result;
-
-
       return result;
     },
 
-    // 2. timestamp에서 시간만 뽑아내기
+    checkTimeStamp(time) {
+      return time.slice(5, 10)
+    },
 
-    // 3. 천자리 콤마
+    checkPositiveNum(change) {
+      if (!change) return
+      if (change > 0) {
+        return {'color': 'green'}
+      } else {
+        return {'color': 'red'}
+      }
+    },
+
     numberWithCommas(item) {
       return item.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     },
+
+    // 반복되는 코드, 함수선언
+    // 아래함수는 return 써주는거 필수
+    fetchLandingDisclosure () {
+      return axios
+          .get('https://api.xangle.io/landing-disclosure', {
+            params: {
+              page: this.page,
+              items_per_page: 8,
+            },
+          })
+          .then((res) => {
+            (this.disclosuresList = res.data), console.log(this.disclosuresList);
+          });
+    },
+
+    goToNextPage() {
+      // 클릭하면 page가 +1 증가
+      console.log("next")
+      this.page += 1
+      this.fetchLandingDisclosure()
+    },
+
+    // 페이지가 -가 되었을 때 네트워크 처리 하기
+
+    goToPrevPage() {
+      // 클릭하면 page가 -1 감
+      console.log("prev")
+      this.page -= 1
+      this.fetchLandingDisclosure()
+    },
   },
+
   mounted() {
-    axios
-      .get('https://api.xangle.io/landing-disclosure', {
-        params: {
-          page: 0,
-          items_per_page: 8,
-        },
-      })
-      .then((res) => {
-        (this.disclosuresList = res.data), console.log(this.disclosuresList);
-      });
+    this.fetchLandingDisclosure()
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .disclosures_container {
-  //min-width: 700px;
-  //flex-basis: 300px;
-  //flex-grow: 1;
-  //min-height: 492px;
-  //margin-top: 20px;
 
   .title {
     height: 40px;
@@ -145,10 +168,11 @@ export default {
         border: 1px solid #dbe1ea;
         border-radius: 4px;
         cursor: pointer;
+
         .btn_font {
           font-size: 14px;
-          //color: #32569a;
-          color: black;
+          color: #32569a;
+          //color: black;
         }
       }
     }
@@ -156,25 +180,30 @@ export default {
 
   .disclosures_list_contents {
     background-color: white;
+
     .list_component {
       height: 47px;
       width: 100%;
       border-bottom: 1px solid #dfdfdf;
       display: flex;
-      justify-content: space-around;
+      justify-content: left;
       text-align: left;
       color: #303d55;
 
       .col {
         display: flex;
-        justify-content: flex-start;
+        justify-content: left;
         align-items: center;
       }
 
       .list_component_name {
+        width: 14%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-size: 11px;
         font-weight: 700;
-        line-height: 16.5px;
+        //line-height: 16.5px;
 
         img {
           width: 16px;
@@ -182,25 +211,41 @@ export default {
           margin-right: 4px;
         }
       }
+
       .list_component_title {
         font-size: 12px;
         font-weight: 700;
-        width: 54%;
+        width: 53%;
         overflow: hidden;
         white-space: nowrap;
         text-align: left;
       }
+
       .list_component_price {
-        display: flex;
+
+        width: 25%;
         font-size: 12px;
+        display: flex;
+        justify-content: left;
+        letter-spacing: 0.5px;
+        margin-left: 9px;
 
         .price {
+          width: 40%;
+
+
+        }
+
+        .variance {
+          width: 40%;
+          white-space: nowrap;
+
+
         }
       }
 
       .list_component_date {
         font-size: 11px;
-
         color: gray;
       }
     }

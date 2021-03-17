@@ -27,9 +27,6 @@ body {
     align-items: center;
     color: white;
     background-color: #1e2637;
-    /* position: fixed; */
-    /* margin-top: 100px; */
-    /* z-index: 20; */
     bottom: 0;
   }
 }

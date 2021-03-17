@@ -1,4 +1,4 @@
-<template>
+<template >
   <div class="cryptoAssets_container">
     <div class="title">
       <p>Crypto Assets</p>
@@ -15,18 +15,19 @@
         <div class="list_component_inner_area" v-for="(price, id) in priceList" :key="id">
 <!--        <router-link :to="`/grid/${price.name}`" exact>-->
 
-          <div class="list_component_name">
+          <div class="list_component_name col">
             <img
                 :src="price.icon_url"
                 alt="logo"
             />
             <span>{{price.slug}}</span>
           </div>
-          <div class="list_component_price">
-            <span>{{price.price.toFixed(2)}}</span>
-<!--            <span>2.77%</span>-->
+          <div class="list_component_price col">
+            <span>${{numberWithCommas(price.price.toFixed(2))}}</span>
+
+            <span :style="checkPositiveNum (price.percent_change_24h)">{{price.percent_change_24h.toFixed(2)}}%</span>
           </div>
-          <div class="list_component_volume">$44,992,677,301</div>
+          <div class="list_component_volume col">${{numberWithCommas(checkVolumePrice(price.volume_24h_reported))}}</div>
 
 <!--        </router-link> -->
 
@@ -59,8 +60,42 @@ components : {},
     }
   },
   methods: {
-    name() {
-      
+    checkCurrentPrice(item) {
+      if (!item) return 'N/A';
+
+      if (item > 1) {
+        return item.toFixed(3);
+      } else {
+        return item.toFixed(6);
+      }
+    },
+    checkVolumePrice(item) {
+      if (!item) return 'N/A';
+
+      if (item > 1) {
+        return item.toFixed(0);
+      }
+    },
+
+    checkPercentChange(item) {
+      if (!item) return 'N/A';
+
+      let result = `${Math.floor(item).toFixed(1)}% 24(h)`;
+      if (item > 0) result = '+' + result;
+      return result;
+    },
+
+    checkTimeStamp(time){
+      return time.slice(5, 10)
+    },
+
+    checkPositiveNum (change) {
+      if(!change) return
+      if (change > 0 ) {return {'color' : 'green' }} else { return { 'color' : 'red' }}
+    },
+
+    numberWithCommas(item) {
+      return item.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
   },
   mounted() {
@@ -98,23 +133,42 @@ components : {},
 
     .list_subject {
       height: 27px;
-      padding: 17px;
+      padding: 17px 5px;
      display: flex;
       font-size: 11px;
-      justify-content: space-around;
+      justify-content: left;
       align-items: center;
       color: #A6AEBA;
       border-bottom: 1px solid #dfdfdf;
 
-      .subject_name, .subject_price, .subject_volume {
+      .subject_name,  {
+        width: 25%;
         height: 27px;
         display: flex;
         justify-content: center;
         align-items: center;
+        //border: 1px solid salmon;
+      }
+      .subject_price {
+        width:35%;
+        height: 27px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        //border: 1px solid salmon;
+      }
+      .subject_volume {
+        width: 40%;
+        height: 27px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        //border: 1px solid salmon;
       }
     }
 
     .list_component {
+      padding: 10px 5px;
 
       .list_component_inner_area {
         height: 32px;
@@ -122,25 +176,45 @@ components : {},
         justify-content: space-around;
         text-align: center;
         line-height: 5px;
-        padding: 17px 10px;
+
         font-size: 11px;
         background-color: white;
+        //border: 1px solid salmon;
 
 
-        .list_component_name, list_component_price , list_component_volume {
+        .col {
           display: flex;
           justify-content: center;
           align-items: center;
           font-size: 11px;
           font-weight: 700;
-          padding-left: 5px;
+        }
 
+        .list_component_name {
+            width: 25%;
           img {
             width: 16px;
             height: 16px;
             margin-right: 8px;
           }
         }
+
+         .list_component_volume {
+            width: 40%;
+           font-weight: 400;
+          }
+
+          .list_component_price {
+            width: 35%;
+
+            span {
+            &:nth-child(1) {
+              letter-spacing: 0.4px;
+              padding-right: 9px;
+
+            }
+            }
+          }
       }
     }
   }

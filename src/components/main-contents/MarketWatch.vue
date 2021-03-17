@@ -3,56 +3,51 @@
     <div class="title">
       <p>Market Watch  <font-awesome-icon icon="chevron-right" class="btn_font" /></p>
     </div>
-    <div class="marketWatch_list_contents">
-      <div class="list_card">
-        <p class="category">Category</p>
-        <p class="subject">Liquid delists 28 assets to become licensed crypto exchange in Singapore</p>
-        <p class="content">On July 27th, Liquid, Japanese Crypto exchange, has updated the list of 28 assets that are delisted on 24th. Due to heightened compliance requirements set by …</p>
-        <p class="date">03-12</p>
+    <div class="marketWatch_list_contents" >
+      <div class="list_card" v-for="(card,index) in cardList" :key="index">
+        <p class="category">{{card.sub_type}}</p>
+        <p class="subject">{{card.title}}</p>
+        <p class="content">{{card.summary}}</p>
+        <p class="date">{{ checkTimeStamp(card.timestamp)}}</p>
       </div>
-      <div class="list_card">
-        <p class="category">Category</p>
-        <p class="subject">Liquid delists 28 assets to become licensed crypto exchange in Singapore</p>
-        <p class="content">On July 27th, Liquid, Japanese Crypto exchange, has updated the list of 28 assets that are delisted on 24th. Due to heightened compliance requirements set by …</p>
-        <p class="date">03-12</p>
-      </div>
-      <div class="list_card">
-        <p class="category">Category</p>
-        <p class="subject">Liquid delists 28 assets to become licensed crypto exchange in Singapore</p>
-        <p class="content">On July 27th, Liquid, Japanese Crypto exchange, has updated the list of 28 assets that are delisted on 24th. Due to heightened compliance requirements set by …</p>
-        <p class="date">03-12</p>
-      </div>
-      <div class="list_card">
-        <p class="category">Category</p>
-        <p class="subject">Liquid delists 28 assets to become licensed crypto exchange in Singapore</p>
-        <p class="content">On July 27th, Liquid, Japanese Crypto exchange, has updated the list of 28 assets that are delisted on 24th. Due to heightened compliance requirements set by …</p>
-        <p class="date">03-12</p>
-      </div>
+
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+
+export default {
+  components : {},
+  computed: {},
+  data() {
+    return {
+      cardList: [],
+    }
+  },
+  methods: {
+    checkTimeStamp(time){
+      return time.slice(5, 10)
+    },
+  },
+  mounted() {
+    axios
+        .get('https://api.xangle.io/landing-research-list')
+        .then((res)=> {this.cardList = res.data, console.log(this.cardList)})
+  }
+
+};
 </script>
 
 <style lang="scss">
 .marketWatch_container {
-  /* width: 500px; */
-  min-width: 700px;
-  min-height: 492px;
-  /* height: 500px; */
-  //background-color: beige;
-  //display: flex;
-  padding-top: 20px;
-  flex-basis: 300px;
-  flex-grow: 1;
 
   .title {
     height: 40px;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
     cursor: pointer;
 
     p {
@@ -64,16 +59,16 @@ export default {};
   }
   .marketWatch_list_contents {
       display: flex;
-      justify-content: flex-start;
       flex-wrap: wrap;
 
     .list_card {
-      width: 344px;
-      height: 183px;
+      width: 340px;
+      height: 184px;
       padding: 16px 20px;
       text-align: left;
       background-color: white;
-      margin: 3px;
+      margin: 5px;
+
 
 
       .category {
@@ -100,6 +95,7 @@ export default {};
         font-size: 12px;
         line-height: 1.5;
         letter-spacing: -0.16px;
+        overflow: hidden;
       }
       .date {
         width: 31px;

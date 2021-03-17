@@ -23,8 +23,13 @@
         <div class="crypto_assets">
           <crypto-assets></crypto-assets>
         </div>
-        <div class="market_watch">MarketWatch</div>
-        <div class="pr_research">PR/Research</div>
+        <div class="market_watch">
+          <market-watch></market-watch>
+        </div>
+        <div class="pr_research">
+          <PRResearch></PRResearch>
+
+        </div>
       </div>
 
 
@@ -36,15 +41,15 @@
 
 import Disclosures from "@/components/main-contents/Disclosures";
 import CryptoAssets from "@/components/main-contents/CryptoAssets";
-// import MarketWatch from "@/components/main-contents/MarketWatch";
-// import PRResearch from "@/components/main-contents/PRResearch";
+import MarketWatch from "@/components/main-contents/MarketWatch";
+import PRResearch from "@/components/main-contents/PRResearch";
 
 export default {
   components: {
     Disclosures,
     CryptoAssets,
-    // MarketWatch,
-    // PRResearch,
+    MarketWatch,
+    PRResearch,
   },
 };
 </script>
@@ -58,6 +63,7 @@ export default {
 .landingPage_container {
   width: 100%;
   margin-top: 64px;
+  margin-bottom: 100px;
   .banner_container {
     width: 100%;
     height: 360px;
@@ -89,7 +95,7 @@ export default {
             font-family: 'poppins', 'Roboto', sans-serif;
             margin-bottom: 24px;
           }
-          .langding_banner_button {
+          .landing_banner_button {
             width: 141px;
             height: 48px;
             background-color: #ffffff;
@@ -121,7 +127,8 @@ export default {
     display: grid;
     grid-template-columns: minmax(550px, 700px)  minmax(350px, 488px);
     margin: 0 auto;
-    gap: 11px;
+    row-gap: 40px;
+    column-gap: 11px;
     background-color: #ebeef4;
 
     // 600px ~ 960px
@@ -146,7 +153,6 @@ export default {
       padding: 50px 0;
       margin: 10px 0;
 
-
       .disclosures,
       .crypto_assets,
       .market_watch,
@@ -154,7 +160,6 @@ export default {
         width: 100%;
         color: green;
       }
-
     }
 
       .disclosures {
@@ -172,24 +177,18 @@ export default {
       .market_watch {
       height: 376px;
       display: flex;
-      border: 5px solid fuchsia;
-      background-color: white;
+      //border: 5px solid fuchsia;
+      //background-color: white;
       }
 
       .pr_research {
+        //width: auto;
       height: 376px;
       display: flex;
-      border: 5px solid aquamarine;
-      background-color: white;
+      //border: 5px solid aquamarine;
+      //background-color: white;
     }
 
     }
     }
-
-
-
-
-
-
-
 </style>
