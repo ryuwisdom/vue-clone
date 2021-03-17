@@ -40,9 +40,10 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 .marketWatch_container {
-
+//border: 1px solid crimson;
+  width: 100%;
   .title {
     height: 40px;
     display: flex;
@@ -57,22 +58,23 @@ export default {
       padding-bottom: 20px;
     }
   }
+
   .marketWatch_list_contents {
-      display: flex;
-      flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    //border: 1px solid blue;
 
     .list_card {
-      width: 340px;
+      width: 48%;
       height: 184px;
       padding: 16px 20px;
       text-align: left;
       background-color: white;
       margin: 5px;
 
-
-
       .category {
-        width: 88px;
+        //width: 88px;
         height: 18px;
         font-size: 11px;
         color: #A6AEBA;
@@ -80,7 +82,7 @@ export default {
       }
       .subject {
         height: 40px;
-        flex-basis: 304px;
+        //flex-basis: 304px;
         margin-top: 4px;
         color: #1e2637;
         font-size: 14px;
@@ -88,7 +90,7 @@ export default {
         font-family: 'Spoqa Han Sans', sans-serif;
       }
       .content {
-        width: 304px;
+        //width: 304px;
         height: 54px;
         margin: 10px 0;
         font-family: 'SpoqaHanSans';
@@ -98,12 +100,27 @@ export default {
         overflow: hidden;
       }
       .date {
-        width: 31px;
+        //width: 31px;
         height: 18px;
         margin: 8px 4px 0 0;
         font-family: SpoqaHanSans;
         font-size: 11px;
         color: #A6AEBA;
+      }
+    }
+  }
+
+  @media all and (max-width: 600px) {
+    .marketWatch_list_contents {
+      width: 100%;
+      //height: 368px;
+      justify-content: space-between;
+      flex-direction: column;
+
+      .list_card {
+        width: 100%;
+        height: 184px;
+        //background-color: #6971fd;
       }
     }
   }

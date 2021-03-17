@@ -143,6 +143,10 @@ export default {
       .pr_research {
         width: 100%;
         color: hotpink;
+
+        .prResearch_container{
+          margin-top: 40px;
+        }
       }
 
     }
@@ -175,20 +179,26 @@ export default {
       }
 
       .market_watch {
-      height: 376px;
-      display: flex;
-      //border: 5px solid fuchsia;
-      //background-color: white;
+        //height: 376px;
+        height: 430px;
+        width: 100%;
+        display: flex;
+        overflow: hidden;
+
+        .marketWatch_container {
+          //width: 100%;
+          //background-color: #6971fd;
+          //color: skyblue;
+        }
       }
 
       .pr_research {
-        //width: auto;
       height: 376px;
       display: flex;
-      //border: 5px solid aquamarine;
-      //background-color: white;
-    }
+       }
+      }
+
 
     }
-    }
+
 </style>

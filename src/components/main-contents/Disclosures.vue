@@ -14,8 +14,8 @@
     <div class="disclosures_list_contents">
       <div
           class="list_component"
-          v-for="(item, id) in disclosuresList"
-          :key="id"
+          v-for="item in disclosuresList"
+          :key="item.disclosure_id"
       >
         <div class="list_component_name col">
           <img :src="item.logos[64]" alt="logo"/>
@@ -99,8 +99,8 @@ export default {
       return item.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     },
 
-    // 반복되는 코드, 함수선언
-    // 아래함수는 return 써주는거 필수
+    // 반복되는 코드, 함수 선언
+    // 아래함수는 return 필수
     fetchLandingDisclosure () {
       return axios
           .get('https://api.xangle.io/landing-disclosure', {
@@ -115,16 +115,15 @@ export default {
     },
 
     goToNextPage() {
-      // 클릭하면 page가 +1 증가
       console.log("next")
       this.page += 1
       this.fetchLandingDisclosure()
     },
 
     // 페이지가 -가 되었을 때 네트워크 처리 하기
+    // 첫 페이지(page : 1)에서 prev버튼은 inactive 처리, 스타일 포
 
     goToPrevPage() {
-      // 클릭하면 page가 -1 감
       console.log("prev")
       this.page -= 1
       this.fetchLandingDisclosure()
@@ -167,6 +166,7 @@ export default {
         background-color: #f6f7f9;
         border: 1px solid #dbe1ea;
         border-radius: 4px;
+        outline: none;
         cursor: pointer;
 
         .btn_font {

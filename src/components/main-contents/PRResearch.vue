@@ -4,54 +4,19 @@
       <p>PR/Research  <font-awesome-icon icon="chevron-right" class="btn_font" /></p>
     </div>
     <div class="prResearch_list_contents">
-      <div class="list_card">
+      <div class="list_card" v-for="card in prResearchList" :key="card._id">
         <div class="card_left_side">
-          <p class="subject">[Xangle Research] Defi, dejavu of 2017 ICO market boom?</p>
+          <p class="subject">{{ card.title }}</p>
           <div class="author_side">
-            <span class="author">Cross Angle</span>
-            <span class="date">03-02</span>
+            <span class="author">{{ card.category }}</span>
+            <span class="date">{{ checkTimeStamp(card.timestamp)}}</span>
           </div>
         </div>
         <div class="card_right_side">
-          <img src="https://s3.ap-northeast-2.amazonaws.com/upload.xangle.io/images/content/thumbnail/image-7e25d545-8c98-47c8-93f0-b25ab96c4138.png">
+          <img :src="card.thumbnail_url">
         </div>
       </div>
-      <div class="list_card">
-        <div class="card_left_side">
-          <p class="subject">[Xangle Research] Defi, dejavu of 2017 ICO market boom?</p>
-          <div class="author_side">
-            <span class="author">Cross Angle</span>
-            <span class="date">03-02</span>
-          </div>
-        </div>
-        <div class="card_right_side">
-          <img src="https://s3.ap-northeast-2.amazonaws.com/upload.xangle.io/images/content/thumbnail/image-7e25d545-8c98-47c8-93f0-b25ab96c4138.png">
-        </div>
-      </div>
-      <div class="list_card">
-        <div class="card_left_side">
-          <p class="subject">[Xangle Research] Defi, dejavu of 2017 ICO market boom?</p>
-          <div class="author_side">
-            <span class="author">Cross Angle</span>
-            <span class="date">03-02</span>
-          </div>
-        </div>
-        <div class="card_right_side">
-          <img src="https://s3.ap-northeast-2.amazonaws.com/upload.xangle.io/images/content/thumbnail/image-7e25d545-8c98-47c8-93f0-b25ab96c4138.png">
-        </div>
-      </div>
-      <div class="list_card">
-        <div class="card_left_side">
-          <p class="subject">[Xangle Research] Defi, dejavu of 2017 ICO market boom?</p>
-          <div class="author_side">
-            <span class="author">Cross Angle</span>
-            <span class="date">03-02</span>
-          </div>
-        </div>
-        <div class="card_right_side">
-          <img src="https://s3.ap-northeast-2.amazonaws.com/upload.xangle.io/images/content/thumbnail/image-7e25d545-8c98-47c8-93f0-b25ab96c4138.png">
-        </div>
-      </div>
+
 
     </div>
 
@@ -59,20 +24,34 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+
+export default {
+  components : {},
+  computed: {},
+  data() {
+    return {
+      prResearchList: [],
+    }
+  },
+  methods: {
+    checkTimeStamp(time){
+      return time.slice(5, 10)
+    },
+  },
+  mounted() {
+    axios
+        .get('https://api.xangle.io/landing-content-list?lang=en')
+        .then((res)=> {this.prResearchList = res.data, console.log(this.prResearchList)})
+  }
+
+};
 </script>
 
 <style lang="scss">
 .prResearch_container {
-  /* width: 500px; */
-  //min-width: 488px;
-  //height: 492px;
-  //background-color: yellow;
-  //margin-top: 20px;
-  //min-width: 350px;
-  //flex-basis: 300px;
-  //flex-grow: 1;
-
+  border: 1px solid seagreen;
+  width: 100%;
   .title {
     height: 40px;
     display: flex;
@@ -89,7 +68,6 @@ export default {};
   }
 
   .prResearch_list_contents {
-    //width: 488px;
     display: flex;
     flex-direction: column;
     .list_card {
@@ -98,12 +76,14 @@ export default {};
       background-color: white;
       border-bottom:  1px solid #dfdfdf;
       display: flex;
-      justify-content: flex-start;
+      justify-content: space-between;
         .card_left_side {
           display: flex;
           flex-direction: column;
+          border: 1px solid aquamarine;
           .subject {
-            width: 265px;
+            border: 1px solid salmon;
+            //width: 265px;
             height: 40px;
             margin: 16px 20px 5px 0;
             text-align: left;
@@ -114,8 +94,9 @@ export default {};
 
           }
           .author_side {
+            border: 1px solid salmon;
             display: flex;
-            width: 265px;;
+            //width: 265px;
             justify-content: flex-start;
             .author {
               height: 18px;
@@ -138,10 +119,10 @@ export default {};
 
         }
       .card_right_side {
+        border: 1px solid rebeccapurple;
        img {
-         //width: 183px;
          height: 94px;
-         //margin: 0 0 0 20px;
+
        }
       }
     }

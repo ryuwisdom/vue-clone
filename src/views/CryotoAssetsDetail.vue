@@ -58,7 +58,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .about_container {
   margin-top: 100px;
   padding-left: 20px;
