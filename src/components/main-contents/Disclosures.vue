@@ -65,7 +65,9 @@ export default {
     // 1. 아이템의 값이 존재하면 (24h)붙인 후 / 숫자이고 -일때 red, +일때 green,
     // null이면 N/A 리턴
 
-   // 2. timestamp에서 시간 뽑아내기
+   // 2. timestamp에서 날 뽑아내기짜
+
+    //
 
 
 
