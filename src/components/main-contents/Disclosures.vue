@@ -2,6 +2,7 @@
   <div class="disclosures_container">
     <div class="title">
       <p>Disclosures</p>
+
       <div class="btn_side">
         <button @click="goToPrevPage">
           <font-awesome-icon icon="chevron-left" class="btn_font" />
@@ -57,14 +58,27 @@ export default {
       items_per_page: 8,
     };
   },
+  props : {
+    lang : {
+      type : String,
+      default: 'en'
+    }
+  },
 
-  // watch: {
-  //   page () {
-  //     this.fetchLandingDisclosure()
-  //   }
-  // },
+  watch: {
+    // lang 값의 변경이 일어날때 아래 함수가 실행
+    lang () {
+      console.log('lang changed')
+      this.fetchLandingDisclosure()
+    }
+  },
 
   methods: {
+//     changeCurrency(){
+// alert(this.lang)
+//     },
+
+
     checkCurrentPrice(item) {
       if (!item) return 'N/A';
 
@@ -90,9 +104,9 @@ export default {
     checkPositiveNum(change) {
       if (!change) return;
       if (change[0] === '+') {
-        return { color: 'green' };
+        return { color: '#2bb669' };
       } else {
-        return { color: 'red' };
+        return { color: '#ff6363' };
       }
     },
 
@@ -105,6 +119,7 @@ export default {
         params: {
           page: this.page,
           items_per_page: 8,
+          lang: this.lang
         },
       });
 
@@ -216,9 +231,6 @@ export default {
 
       .list_component_name {
         width: 14%;
-        /* display: flex;
-        justify-content: center;
-        align-items: center; */
         @include flexCenter;
         font-size: 11px;
         font-weight: 700;
@@ -244,7 +256,7 @@ export default {
         font-size: 12px;
         display: flex;
         justify-content: left;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.2px;
         margin-left: 9px;
 
         .price {
@@ -258,6 +270,7 @@ export default {
       }
 
       .list_component_date {
+        width: 8%;
         font-size: 11px;
         color: gray;
       }
@@ -286,5 +299,30 @@ export default {
       cursor: pointer;
     }
   }
-}
+
+  @media all and (max-width: 600px) {
+    .disclosures_list_contents {
+
+      .list_component {
+        width: 100%;
+        justify-content: left;
+
+        .list_component_title {
+          width: 70%;
+        }
+          .list_component_price {
+            display: none;
+          }
+
+          .list_component_date {
+            width: 10%;
+            justify-content: flex-end;
+          }
+        }
+      }
+
+    }
+  }
+
+
 </style>

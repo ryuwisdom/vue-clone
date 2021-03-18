@@ -1,8 +1,8 @@
 <template>
   <div class="main_container">
-    <Header />
+    <Header :lang="lang" @changeLanguage="e => lang = e.target.value"/>
     <div class="contents">
-      <router-view></router-view>
+      <router-view :lang="lang"></router-view >
     </div>
     <Footer />
     <!-- <div class="test_component">test</div> -->
@@ -18,6 +18,12 @@ export default {
     Header,
     Footer,
   },
+  data() {
+    return {
+      lang: 'en'
+    }
+  },
+
 };
 </script>
 

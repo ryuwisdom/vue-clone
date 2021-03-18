@@ -23,11 +23,18 @@
             <span>{{price.slug}}</span>
           </div>
           <div class="list_component_price col">
-            <span>${{numberWithCommas(price.price.toFixed(2))}}</span>
+            <span>${{price.price}}</span>
 
             <span :style="checkPositiveNum (price.percent_change_24h)">{{price.percent_change_24h.toFixed(2)}}%</span>
           </div>
-          <div class="list_component_volume col">${{numberWithCommas(checkVolumePrice(price.volume_24h_reported))}}</div>
+          <div class="list_component_volume col">${{price.volume_24h_reported}}</div>
+
+<!--          <div class="list_component_price col">-->
+<!--            <span>${{numberWithCommas(price.price.toFixed(2))}}</span>-->
+
+<!--            <span :style="checkPositiveNum (price.percent_change_24h)">{{price.percent_change_24h.toFixed(2)}}%</span>-->
+<!--          </div>-->
+<!--          <div class="list_component_volume col">${{numberWithCommas(checkVolumePrice(price.volume_24h_reported))}}</div>-->
 
 <!--        </router-link> -->
 
@@ -54,9 +61,20 @@ components : {},
   data() {
     return {
       priceList: [],
-      // viewList: 10,
 
-
+    }
+  },
+  props : {
+    lang : {
+      type : String,
+      default: 'en'
+    }
+  },
+  watch: {
+    // lang 값의 변경이 일어날때 아래 함수가 실행
+    lang () {
+      console.log('lang changed')
+      this.fetchLandingCryptoAssets()
     }
   },
   methods: {
@@ -91,21 +109,45 @@ components : {},
 
     checkPositiveNum (change) {
       if(!change) return
-      if (change > 0 ) {return {'color' : 'green' }} else { return { 'color' : 'red' }}
+      if (change > 0 ) {return {'color' : '#2bb669' }} else { return { 'color' : '#ff6363' }}
     },
 
     numberWithCommas(item) {
       return item.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    }
+    },
+
+    async fetchLandingCryptoAssets(){
+      const res = await axios.get('https://api.xangle.io/information/component/price/latest', {
+        params: {
+          limit: 10,
+          lang: this.lang
+        },
+      });
+
+      console.log(res.data)
+
+      this.priceList = res.data.map((price) => {
+        price.price = this.numberWithCommas(price.price);
+        price.volume_24h_reported = this.numberWithCommas(this.checkVolumePrice(price.volume_24h_reported));
+        price.timestamp = this.checkTimeStamp(price.timestamp);
+
+        return price;
+      });
+
+      console.log(this.priceList);
+
+
+    },
   },
   mounted() {
-   axios
-    .get('https://api.xangle.io/information/component/price/latest', {
-      params: {
-        limit: 10,
-      }
-    })
-    .then((res)=> {this.priceList = res.data, console.log(this.priceList)})
+    this.fetchLandingCryptoAssets()
+   // axios
+   //  .get('https://api.xangle.io/information/component/price/latest', {
+   //    params: {
+   //      limit: 10,
+   //    }
+   //  })
+   //  .then((res)=> {this.priceList = res.data, console.log(this.priceList)})
   }
 
 };
@@ -147,7 +189,6 @@ components : {},
         display: flex;
         justify-content: center;
         align-items: center;
-        //border: 1px solid salmon;
       }
       .subject_price {
         width:35%;
@@ -155,7 +196,6 @@ components : {},
         display: flex;
         justify-content: center;
         align-items: center;
-        //border: 1px solid salmon;
       }
       .subject_volume {
         width: 40%;
@@ -163,7 +203,6 @@ components : {},
         display: flex;
         justify-content: center;
         align-items: center;
-        //border: 1px solid salmon;
       }
     }
 
@@ -176,10 +215,8 @@ components : {},
         justify-content: space-around;
         text-align: center;
         line-height: 5px;
-
         font-size: 11px;
         background-color: white;
-        //border: 1px solid salmon;
 
 
         .col {
@@ -209,7 +246,7 @@ components : {},
 
             span {
             &:nth-child(1) {
-              letter-spacing: 0.4px;
+              letter-spacing: 0.3px;
               padding-right: 9px;
 
             }

@@ -18,16 +18,16 @@
 
       <div class="mainContents_container">
         <div class="disclosures">
-          <disclosures></disclosures>
+          <disclosures :lang="lang"></disclosures>
         </div>
         <div class="crypto_assets">
-          <crypto-assets></crypto-assets>
+          <crypto-assets :lang="lang"></crypto-assets>
         </div>
         <div class="market_watch">
-          <market-watch></market-watch>
+          <market-watch :lang="lang"></market-watch>
         </div>
         <div class="pr_research">
-          <PRResearch></PRResearch>
+          <PRResearch :lang="lang"></PRResearch>
 
         </div>
       </div>
@@ -51,6 +51,13 @@ export default {
     MarketWatch,
     PRResearch,
   },
+  props: {
+    lang: {
+      type: String,
+      default: 'en'
+    },
+  },
+
 };
 </script>
 
@@ -81,9 +88,7 @@ export default {
       background-position: bottom right;
       //background-position: 100% 100%;
 
-      @media all and (max-width: 600px) {
-        background-size: 350px auto;
-      }
+
 
       .banner_contents {
         margin-top: 104px;
@@ -108,6 +113,34 @@ export default {
           }
         }
       }
+
+    //  배너 미디어 쿼리
+      @media all and (max-width: 600px) {
+        background-size: 250px auto;
+        //align-items: center;
+        .banner_contents {
+          width: 100%;
+          //margin-top: 0;
+          .banner_left {
+            //background-color: #6971fd;
+            width: 80%;
+
+            p {
+              width: 100%;
+              font-size: 23px;
+              //background-color: skyblue;
+            }
+            .landing_banner_button {
+              width: 141px;
+            }
+          }
+        }
+
+        .ticker_container {
+          margin-top: 0px;
+        }
+      }
+
     }
   }
   .ticker_container {
@@ -146,7 +179,9 @@ export default {
 
         .prResearch_container{
           margin-top: 40px;
+        background-color: #6971fd;
         }
+
       }
 
     }
@@ -157,12 +192,15 @@ export default {
       padding: 50px 0;
       margin: 10px 0;
 
-      .disclosures,
+      //.disclosures {
+      //  .disclosures_container {
+      //  }
+      //  }
       .crypto_assets,
       .market_watch,
       .pr_research {
         width: 100%;
-        color: green;
+
       }
     }
 
@@ -179,7 +217,6 @@ export default {
       }
 
       .market_watch {
-        //height: 376px;
         height: 430px;
         width: 100%;
         display: flex;

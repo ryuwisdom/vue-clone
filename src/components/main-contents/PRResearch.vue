@@ -13,7 +13,7 @@
           </div>
         </div>
         <div class="card_right_side">
-          <img :src="card.thumbnail_url">
+          <img :src="card.thumbnail_url" alt="card">
         </div>
       </div>
 
@@ -50,7 +50,7 @@ export default {
 
 <style lang="scss">
 .prResearch_container {
-  border: 1px solid seagreen;
+  //border: 1px solid seagreen;
   width: 100%;
   .title {
     height: 40px;
@@ -80,28 +80,28 @@ export default {
         .card_left_side {
           display: flex;
           flex-direction: column;
-          border: 1px solid aquamarine;
+          font-family: 'SpoqaHanSans';
+
           .subject {
-            border: 1px solid salmon;
-            //width: 265px;
+
+            width: 100%;
             height: 40px;
             margin: 16px 20px 5px 0;
             text-align: left;
-            font-family: SpoqaHanSans;
             font-size: 14px;
             font-weight: bold;
             color: #1e2637;
+            overflow: hidden;
 
           }
           .author_side {
-            border: 1px solid salmon;
+
             display: flex;
             //width: 265px;
             justify-content: flex-start;
             .author {
               height: 18px;
               margin: 5px 4px 16px 0;
-              font-family: SpoqaHanSans;
               font-size: 11px;
               color: #A6AEBA;
               text-align: left;
@@ -109,17 +109,15 @@ export default {
             .date {
               height: 18px;
               margin: 5px 4px 16px 0;
-              font-family: SpoqaHanSans;
               font-size: 11px;
               color: #A6AEBA;
               text-align: left;
             }
           }
 
-
         }
       .card_right_side {
-        border: 1px solid rebeccapurple;
+
        img {
          height: 94px;
 
@@ -127,5 +125,33 @@ export default {
       }
     }
   }
+  //@media all and (min-width: 601px) and (max-width: 960px)  {
+  //  .marketWatch_list_contents {
+  //    width: 100%;
+  //    //height: 368px;
+  //    justify-content: space-between;
+  //    flex-direction: column;
+  //
+  //    .list_card {
+  //      width: 100%;
+  //      height: 184px;
+  //    }
+  //  }
+  //}
+  //
+  //@media all and (max-width: 600px) {
+  //  .marketWatch_list_contents {
+  //    width: 100%;
+  //    //height: 368px;
+  //    justify-content: space-between;
+  //    flex-direction: column;
+  //
+  //    .list_card {
+  //      width: 100%;
+  //      height: 184px;
+  //
+  //    }
+  //  }
+  //}
 }
 </style>
