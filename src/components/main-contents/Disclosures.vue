@@ -4,21 +4,21 @@
       <p>Disclosures</p>
       <div class="btn_side">
         <button @click="goToPrevPage">
-          <font-awesome-icon icon="chevron-left" class="btn_font"/>
+          <font-awesome-icon icon="chevron-left" class="btn_font" />
         </button>
         <button @click="goToNextPage">
-          <font-awesome-icon icon="chevron-right" class="btn_font"/>
+          <font-awesome-icon icon="chevron-right" class="btn_font" />
         </button>
       </div>
     </div>
     <div class="disclosures_list_contents">
       <div
-          class="list_component"
-          v-for="item in disclosuresList"
-          :key="item.disclosure_id"
+        class="list_component"
+        v-for="item in disclosuresList"
+        :key="item.disclosure_id"
       >
         <div class="list_component_name col">
-          <img :src="item.logos[64]" alt="logo"/>
+          <img :src="item.logos[64]" alt="logo" />
           <span>{{ item.symbol }}</span>
         </div>
         <div class="list_component_title col">
@@ -26,14 +26,16 @@
         </div>
         <div class="list_component_price col">
           <span class="price">
-            {{ `${checkCurrentPrice(item.current_price)}` }}
+            {{ item.current_price }}
           </span>
-          <span class="variance" :style="checkPositiveNum (item.percent_change)">
-            {{ `${checkPercentChange(item.percent_change)}` }}
+          <span class="variance" :style="checkPositiveNum(item.percent_change)">
+            {{ item.percent_change }}
           </span>
         </div>
 
-        <div class="list_component_date col">{{ `${checkTimeStamp(item.timestamp)}` }}</div>
+        <div class="list_component_date col">
+          {{ item.timestamp }}
+        </div>
       </div>
     </div>
     <div class="feed_button_side">
@@ -63,19 +65,18 @@ export default {
   // },
 
   methods: {
-
     checkCurrentPrice(item) {
       if (!item) return 'N/A';
 
       if (item > 1) {
-        return item.toFixed(3);
+        return `$${item.toFixed(3)}`;
       } else {
-        return item.toFixed(6);
+        return `$${item.toFixed(6)}`;
       }
     },
 
     checkPercentChange(item) {
-      if (!item) return 'N/A';
+      if (!item) return '';
 
       let result = `${Math.floor(item).toFixed(1)}% 24(h)`;
       if (item > 0) result = '+' + result;
@@ -83,15 +84,15 @@ export default {
     },
 
     checkTimeStamp(time) {
-      return time.slice(5, 10)
+      return time.slice(5, 10);
     },
 
     checkPositiveNum(change) {
-      if (!change) return
-      if (change > 0) {
-        return {'color': 'green'}
+      if (!change) return;
+      if (change[0] === '+') {
+        return { color: 'green' };
       } else {
-        return {'color': 'red'}
+        return { color: 'red' };
       }
     },
 
@@ -99,46 +100,64 @@ export default {
       return item.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     },
 
-    // 반복되는 코드, 함수 선언
-    // 아래함수는 return 필수
-    fetchLandingDisclosure () {
-      return axios
-          .get('https://api.xangle.io/landing-disclosure', {
-            params: {
-              page: this.page,
-              items_per_page: 8,
-            },
-          })
-          .then((res) => {
-            (this.disclosuresList = res.data), console.log(this.disclosuresList);
-          });
+    async fetchLandingDisclosure() {
+      const res = await axios.get('https://api.xangle.io/landing-disclosure', {
+        params: {
+          page: this.page,
+          items_per_page: 8,
+        },
+      });
+
+      this.disclosuresList = res.data.map((item) => {
+        item.current_price = this.checkCurrentPrice(item.current_price);
+        item.percent_change = this.checkPercentChange(item.percent_change);
+        item.timestamp = this.checkTimeStamp(item.timestamp);
+
+        return item;
+      });
+
+      console.log(this.disclosuresList);
     },
+    // fetchLandingDisclosure () {
+    //   return axios
+    //       .get('https://api.xangle.io/landing-disclosure', {
+    //         params: {
+    //           page: this.page,
+    //           items_per_page: 8,
+    //         },
+    //       })
+    //       .then((res) => {
+    //         (this.disclosuresList = res.data), console.log(this.disclosuresList);
+    //       });
+    // },
 
     goToNextPage() {
-      console.log("next")
-      this.page += 1
-      this.fetchLandingDisclosure()
+      console.log('next');
+      this.page += 1;
+      this.fetchLandingDisclosure();
     },
 
     // 페이지가 -가 되었을 때 네트워크 처리 하기
-    // 첫 페이지(page : 1)에서 prev버튼은 inactive 처리, 스타일 포
+    // 첫 페이지(page : 1)에서 prev버튼은 inactive 처리, 스타일 포함
 
     goToPrevPage() {
-      console.log("prev")
-      this.page -= 1
-      this.fetchLandingDisclosure()
+      console.log('prev');
+      if (this.page === 0) return;
+      this.page -= 1;
+      this.fetchLandingDisclosure();
     },
   },
 
   mounted() {
-    this.fetchLandingDisclosure()
+    this.fetchLandingDisclosure();
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.disclosures_container {
+@import '~@/assets/scss/common.scss';
 
+.disclosures_container {
   .title {
     height: 40px;
     display: flex;
@@ -172,7 +191,6 @@ export default {
         .btn_font {
           font-size: 14px;
           color: #32569a;
-          //color: black;
         }
       }
     }
@@ -198,12 +216,12 @@ export default {
 
       .list_component_name {
         width: 14%;
-        display: flex;
+        /* display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: center; */
+        @include flexCenter;
         font-size: 11px;
         font-weight: 700;
-        //line-height: 16.5px;
 
         img {
           width: 16px;
@@ -222,7 +240,6 @@ export default {
       }
 
       .list_component_price {
-
         width: 25%;
         font-size: 12px;
         display: flex;
@@ -232,15 +249,11 @@ export default {
 
         .price {
           width: 40%;
-
-
         }
 
         .variance {
           width: 40%;
           white-space: nowrap;
-
-
         }
       }
 
